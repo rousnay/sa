@@ -1,0 +1,74 @@
+{%- if section.settings.deskimage -%}
+<div class="threetire-wrapper" style="background-image:url('{{section.settings.deskimage | img_url: 'master'}}');">
+  {% if section.settings.mobimage %}
+  <img class="tablet-mobile-view" src="{{section.settings.mobimage | img_url: 'master'}}">
+  {% else %}
+  <img class="tablet-mobile-view" src="{{section.settings.deskimage | img_url: 'master'}}">
+  {% endif  %}
+  
+  <div class="threetire-wrapper-content">
+    {% if section.settings.title %}
+    <h2 class="title">{{section.settings.title}}</h2>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+    <div class="threetire-slider">
+      {%- for block in section.blocks -%}
+      {%- if block.settings.image -%}
+      <div class="item">
+        <img src="{{block.settings.image | img_url: '100x100'}}">
+        {%- if block.settings.description -%}{{block.settings.description}}{% endif %}
+      </div>
+      {%- endif -%}
+      {%- endfor -%}
+     </div>
+    {% endif %}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Three Tire Section",
+	"max_blocks": 3,
+    "settings": [
+		{
+          "type": "image_picker",
+          "id": "deskimage",
+          "label": "Image",
+          "info": "Desktop banner image"
+        },
+		{
+          "type": "image_picker",
+          "id": "mobimage",
+          "label": "Image",
+          "info": "Mobile banner image"
+        },
+		{
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "three tier actives in every product"
+        }
+	],
+	"blocks": [
+      {
+        "type": "image",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Match size to other slides"
+          },
+          {
+            "type": "richtext",
+            "id": "description",
+            "label": "Subheading",
+			"default": "<p>Tell your brand's story through images.</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

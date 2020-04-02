@@ -1,0 +1,70 @@
+{%- if section.settings.enable -%}
+<div class="section-header-image-wrapper aboubannercontent">
+      <div class="section-header-image section-header-image--parallax lazyload" data-bgset="{% include 'bgset', image: section.settings.image_bg %}">
+       <div class="aboutbanner-content" style="background-color:{{ section.settings.background}};color:{{ section.settings.color}};">
+        <h2 data-aos="fade-up" data-aos-duration="600">{{ section.settings.title | escape }}</h2>
+  {% unless section.settings.content == '' %}
+          <div class="video__description" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">{{ section.settings.content }}</div>
+        {% endunless %}
+      </div>
+  </div>
+    </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "main content",
+  "settings": [
+	{
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable",
+      "default": false
+    },
+{
+      "type": "image_picker",
+      "id": "image_bg",
+      "label": "banner Image"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Image with text"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>This area is used to showcase a product, collection, or your brand.</p>"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#fff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

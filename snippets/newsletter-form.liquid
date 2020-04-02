@@ -1,0 +1,48 @@
+<!-- /snippets/newsletter-form.liquid -->
+{% comment %}
+{% form 'customer' %}
+  {% if form.posted_successfully? %}
+    <p><em>{{ 'general.newsletter_form.thank_you' | t }}</em></p>
+  {% elsif form.errors %}
+    {% for field in form.errors %}
+      <p><em>{{ field }} - {{ form.errors.messages[field] }}</em></p>
+    {% endfor %}
+  {% endif %}
+
+  <input type="hidden" name="contact[accepts_marketing]" value="true">
+  <div class="input-group newsletter-form">
+    <input type="email" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off" name="contact[email]" />
+    <span class="input-group-btn">
+      <input type="submit" class="btn caps" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+    </span>
+  </div>
+{% endform %}
+{% endcomment %}
+<!-- Begin Mailchimp Signup Form -->
+<form action="https://injectedmotion.us20.list-manage.com/subscribe/post?u=906992cd087279b960742f60b&amp;id=a5260d969f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+  <div id="mc_embed_signup_scroll">
+    <div class="input-group newsletter-form form-newsletter input-group--underline" data-animate>
+      <label for="EmailField{{ section.id }}" class="hide">Email Address  <span class="asterisk">*</span></label>
+      <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ section.settings.placeholder_text | escape }}" name="EMAIL" class="input-group__field required email" id="EmailField{{ section.id }}" aria-label="{{ 'general.newsletter_form.newsletter_placeholder' | t }}" autocorrect="off" autocapitalize="off" required>
+      <span class="input-group-btn">
+        <button type="submit" class="btn caps" name="subscribe" id="subscribe" tabindex="-1">{{ 'general.newsletter_form.submit' | t }}</button>
+      </span>
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_906992cd087279b960742f60b_a5260d969f" tabindex="-1" value=""></div>
+		{% comment %}
+      <div class="input-group__btn input-group__btn--newsletter">
+        <div class="sa-formSubmit"><button type="submit" class="btn" name="subscribe" tabindex="-1">Join</button></div>
+      </div>
+      {% endcomment %}
+    </div>
+    <div class="agree-terms">
+      <div class="sa-formTerms"> 
+        <input type="checkbox" id="gdpr_21013" name="gdpr[21013]" value="Y" class="av-checkbox gdpr" checked required>
+        <label for="gdpr_21013">I agree to your terms and conditions and to receive Slow Ageing marketing materials via email</label>
+      </div>
+    </div>
+
+
+  </div>
+</form>
+<!--End mc_embed_signup-->
+
