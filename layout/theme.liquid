@@ -108,6 +108,7 @@
       {% if customer.tags.size > 0 %}
         {% include 'fox-wholesale' %}
       {% endif %}
-    
+      <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'sa_custom.js' | asset_url }}"></script><!--<![endif]-->
+  <!--[if lt IE 9]><script src="{{ 'sa_custom.js' | asset_url }}"></script><![endif]-->
 </body>
 </html>

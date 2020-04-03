@@ -6692,28 +6692,4 @@ if ($(window).width() > 767) {
 
 //by Rousnay
 
-$(document).ready(function () {
-
-	//VIP option
-	if ($('header.site-header .bar-VVIP').length > 0) { 
-		console.log("I'm VVIP Customer!");
-
-		$("body").addClass('customer_vvip');
-
-		$('a[href*="products"]').each(function(){
-			var oldUrl = $(this).attr("href"); // Get current url 
-			var lookVip = oldUrl.includes("vip-"); //check if any vip link exist
-				if (lookVip != true){
-				    var newUrl = oldUrl.replace("products/", "products/vip-"); // Create new url
-				    $(this).attr("href", newUrl); // Set herf value
-			    }
-			console.log(this);
-		});
-
-	} else{
-		console.log("I'm just general Customer.");
-	}
-
-});
-
 })(jQuery);
