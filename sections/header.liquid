@@ -54,6 +54,12 @@
     </aside>
   {% endif %}
 
+{% if customer.tags contains 'VIP_DISCOUNT' %}
+  <div class="discount-bar bar-VVIP">
+    <p>As a SLOW SOCIETY FAMILY member YOU receive <b>20%</b> discount on all products and <b>COMPLEMENTARY DELIVERY</b> with your order</p>
+  </div>
+{% endif %}
+
   <div class="header__content">
     <div class="wrap">
       {%- if section.settings.show_header_search -%}
