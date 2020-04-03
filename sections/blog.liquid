@@ -119,7 +119,13 @@
 
     {% paginate blog.articles by article_limit %}
       <div class="blog-listing grid grid--uniform" id="BlogLoop">
+        {%- comment %}<locksmith:b50c>{% endcomment -%}
+          {%- assign locksmith_7c74_forloop__size = 0 %}{% for article in blog.articles %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: article, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_7c74_forloop__size = locksmith_7c74_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_7c74_forloop__index = nil -%}
+        {%- comment %}</locksmith:b50c>{% endcomment -%}
         {% for article in blog.articles %}
+          {%- comment %}<locksmith:e729>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: article, subject_parent: blog, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_7c74_forloop__index == nil %}{% assign locksmith_7c74_forloop__index = 1 %}{% assign locksmith_7c74_forloop__index0 = 0 %}{% else %}{% assign locksmith_7c74_forloop__index = locksmith_7c74_forloop__index | plus: 1 %}{% assign locksmith_7c74_forloop__index0 = locksmith_7c74_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_7c74_forloop__index == 1 %}{% assign locksmith_7c74_forloop__first = true %}{% else %}{% assign locksmith_7c74_forloop__first = false %}{% endif %}{% if locksmith_7c74_forloop__index == locksmith_7c74_forloop__size %}{% assign locksmith_7c74_forloop__last = true %}{% else %}{% assign locksmith_7c74_forloop__last = false %}{% endif %}{% assign locksmith_7c74_forloop__rindex = locksmith_7c74_forloop__size | minus: locksmith_7c74_forloop__index | minus: 1 %}{% assign locksmith_7c74_forloop__rindex0 = locksmith_7c74_forloop__size | minus: locksmith_7c74_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:e729>{% endcomment -%}
           <article class="article article-grid-item grid__item {{ grid_width_small }} {{ grid_width_medium }} {{ grid_width_large }}">
             {% if article.image %}
               <a href="{{ article.url }}">

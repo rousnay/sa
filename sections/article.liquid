@@ -12,12 +12,18 @@
 {%- assign article_content = article.content | split: '/products/' -%}
 {%- if article_content.size > 0 -%}
   {%- assign starts_with_handle = '' -%}
+  {%- comment %}<locksmith:ac49>{% endcomment -%}
+    {%- assign locksmith_4b9c_forloop__size = 0 %}{%- for item in article_content -%}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_4b9c_forloop__size = locksmith_4b9c_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_4b9c_forloop__index = nil -%}
+  {%- comment %}</locksmith:ac49>{% endcomment -%}
   {%- for item in article_content -%}
+    {%- comment %}<locksmith:cba0>{% endcomment -%}
+      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_4b9c_forloop__index == nil %}{% assign locksmith_4b9c_forloop__index = 1 %}{% assign locksmith_4b9c_forloop__index0 = 0 %}{% else %}{% assign locksmith_4b9c_forloop__index = locksmith_4b9c_forloop__index | plus: 1 %}{% assign locksmith_4b9c_forloop__index0 = locksmith_4b9c_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_4b9c_forloop__index == 1 %}{% assign locksmith_4b9c_forloop__first = true %}{% else %}{% assign locksmith_4b9c_forloop__first = false %}{% endif %}{% if locksmith_4b9c_forloop__index == locksmith_4b9c_forloop__size %}{% assign locksmith_4b9c_forloop__last = true %}{% else %}{% assign locksmith_4b9c_forloop__last = false %}{% endif %}{% assign locksmith_4b9c_forloop__rindex = locksmith_4b9c_forloop__size | minus: locksmith_4b9c_forloop__index | minus: 1 %}{% assign locksmith_4b9c_forloop__rindex0 = locksmith_4b9c_forloop__size | minus: locksmith_4b9c_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+    {%- comment %}</locksmith:cba0>{% endcomment -%}
     {% comment %}
       The first item is empty, subsequent items start with a product handle
       Split on URL encoded string to handle params
     {% endcomment %}
-    {%- unless forloop.index0 == 0 -%}
+    {%- unless locksmith_4b9c_forloop__index0 == 0 -%}
       {%- assign starts_with_handle = item | url_encode | split: '%'  -%}
       {%- assign handles = handles | append: starts_with_handle[0] | append: ',' -%}
     {%- endunless -%}
@@ -157,6 +163,9 @@
                   {% if blog.next_article %}
                   <small class="right">
                       {% for post in blog.articles %}
+                        {%- comment %}<locksmith:f0c7>{% endcomment -%}
+                          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: post, subject_parent: blog, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                        {%- comment %}</locksmith:f0c7>{% endcomment -%}
                         {% if post.url == blog.next_article %}
                           <a href="{{ post.url }}" title="{{ post.title | escape }}">{{'blogs.article.newer_post' | t}} &rarr;</a>
                         {% endif %}
@@ -167,6 +176,9 @@
                   {% if blog.previous_article %}
                   <small class="left">
                       {% for post in blog.articles %}
+                        {%- comment %}<locksmith:8b04>{% endcomment -%}
+                          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: post, subject_parent: blog, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                        {%- comment %}</locksmith:8b04>{% endcomment -%}
                         {% if post.url == blog.previous_article %}
                           <a href="{{ post.url }}" title="{{ post.title | escape }}">&larr; {{'blogs.article.older_post' | t}}</a>
                         {% endif %}
@@ -197,6 +209,9 @@
                         {% if current_blog.articles.size > 0 %}
                         <ul class="submenu" aria-expanded="false">
                           {% for article in current_blog.articles limit: 5 %}
+                            {%- comment %}<locksmith:0b52>{% endcomment -%}
+                              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: article, subject_parent: current_blog, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                            {%- comment %}</locksmith:0b52>{% endcomment -%}
                             <li><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></li>
                           {% endfor %}
 
@@ -229,6 +244,9 @@
                 <h3 class="widget__title">{{ 'blogs.article.related_products' | t }}</h3>
                 <div class="widget__products">
                   {% for handle in related_products %}
+                    {%- comment %}<locksmith:3d0b>{% endcomment -%}
+                      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: handle, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                    {%- comment %}</locksmith:3d0b>{% endcomment -%}
                     {%- assign product = all_products[handle] -%}
                     {% include 'product-column-item' %}
                   {% endfor %}
@@ -243,6 +261,9 @@
                 {% assign blog_grid = 'one-whole' %}
                 <div class="widget__recent">
                   {% for article in blog.articles %}
+                    {%- comment %}<locksmith:12f9>{% endcomment -%}
+                      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: article, subject_parent: blog, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                    {%- comment %}</locksmith:12f9>{% endcomment -%}
                     {% unless article.handle == current_article.handle %}
                       {% include 'article-column-item' %}
                       {% assign counter = counter | plus: 1 %}

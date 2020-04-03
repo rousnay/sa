@@ -96,9 +96,15 @@
           </article>
         {% endfor %}
       {% else %}
+        {%- comment %}<locksmith:8507>{% endcomment -%}
+          {%- assign locksmith_54ae_forloop__size = 0 %}{% for article in blogArticles limit: article_limit %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: article, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_54ae_forloop__size = locksmith_54ae_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_54ae_forloop__index = nil -%}
+        {%- comment %}</locksmith:8507>{% endcomment -%}
         {% for article in blogArticles limit: article_limit %}
+          {%- comment %}<locksmith:0577>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: article, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_54ae_forloop__index == nil %}{% assign locksmith_54ae_forloop__index = 1 %}{% assign locksmith_54ae_forloop__index0 = 0 %}{% else %}{% assign locksmith_54ae_forloop__index = locksmith_54ae_forloop__index | plus: 1 %}{% assign locksmith_54ae_forloop__index0 = locksmith_54ae_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_54ae_forloop__index == 1 %}{% assign locksmith_54ae_forloop__first = true %}{% else %}{% assign locksmith_54ae_forloop__first = false %}{% endif %}{% if locksmith_54ae_forloop__index == locksmith_54ae_forloop__size %}{% assign locksmith_54ae_forloop__last = true %}{% else %}{% assign locksmith_54ae_forloop__last = false %}{% endif %}{% assign locksmith_54ae_forloop__rindex = locksmith_54ae_forloop__size | minus: locksmith_54ae_forloop__index | minus: 1 %}{% assign locksmith_54ae_forloop__rindex0 = locksmith_54ae_forloop__size | minus: locksmith_54ae_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:0577>{% endcomment -%}
           {% assign grid_int = section.settings.grid | times:1 %}
-          {% assign animation_delay = forloop.index0  | modulo:grid_int | times:1 %}
+          {% assign animation_delay = locksmith_54ae_forloop__index0  | modulo:grid_int | times:1 %}
 
           {%- capture tags -%}
             {%- if article.tags.size > 0 and showTags -%}

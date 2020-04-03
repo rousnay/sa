@@ -41,12 +41,18 @@
 
   <div class="product-grid product-grid--{{ section.settings.scroll }} {% if section.settings.scroll == 'horizontally' %}flickity-slider--default{% endif %}" id="FrontpageColl"  data-arrows-style="{{ section.settings.arrows_style }}">
     {% if featured_collection.products.size > 0 %}
+      {%- comment %}<locksmith:4612>{% endcomment -%}
+        {%- assign locksmith_cba3_forloop__size = 0 %}{% for product in featured_collection.products limit: limit  %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_cba3_forloop__size = locksmith_cba3_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_cba3_forloop__index = nil -%}
+      {%- comment %}</locksmith:4612>{% endcomment -%}
       {% for product in featured_collection.products limit: limit  %}
+        {%- comment %}<locksmith:bc3b>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: featured_collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_cba3_forloop__index == nil %}{% assign locksmith_cba3_forloop__index = 1 %}{% assign locksmith_cba3_forloop__index0 = 0 %}{% else %}{% assign locksmith_cba3_forloop__index = locksmith_cba3_forloop__index | plus: 1 %}{% assign locksmith_cba3_forloop__index0 = locksmith_cba3_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_cba3_forloop__index == 1 %}{% assign locksmith_cba3_forloop__first = true %}{% else %}{% assign locksmith_cba3_forloop__first = false %}{% endif %}{% if locksmith_cba3_forloop__index == locksmith_cba3_forloop__size %}{% assign locksmith_cba3_forloop__last = true %}{% else %}{% assign locksmith_cba3_forloop__last = false %}{% endif %}{% assign locksmith_cba3_forloop__rindex = locksmith_cba3_forloop__size | minus: locksmith_cba3_forloop__index | minus: 1 %}{% assign locksmith_cba3_forloop__rindex0 = locksmith_cba3_forloop__size | minus: locksmith_cba3_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:bc3b>{% endcomment -%}
         {% assign grid_int = section.settings.grid | times:1 %}
-        {% assign animation_delay = forloop.index0  | modulo:grid_int | times:1 %}
+        {% assign animation_delay = locksmith_cba3_forloop__index0  | modulo:grid_int | times:1 %}
         {% include 'product-grid-item', quick_view: showQuickView %}
         {% if showQuickView and featured_collection.products.size > 0 %}
-            <div class="modal__overlay quicklook" id="Product{{ forloop.index0 }}-{{section.id}}">
+            <div class="modal__overlay quicklook" id="Product{{ locksmith_cba3_forloop__index0 }}-{{section.id}}">
               <section class="modal__outer">
                 {% include 'product-quick-view' %}
               </section>

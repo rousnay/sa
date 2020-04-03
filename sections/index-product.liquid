@@ -2,6 +2,9 @@
 
 {%- assign collections_all = collections['all'] -%}
 {%- for product in collections_all.products limit: 1 -%}
+  {%- comment %}<locksmith:641c>{% endcomment -%}
+    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collections_all, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+  {%- comment %}</locksmith:641c>{% endcomment -%}
   {%- assign first_product = product -%}
 {%- endfor -%}
 

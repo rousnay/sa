@@ -40,6 +40,9 @@
     <div class="collection-list">
       {%- if section.settings.display_type == 'all' -%}
         {%- for collection in collections -%}
+          {%- comment %}<locksmith:d891>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:d891>{% endcomment -%}
           {%- unless collection.handle == 'frontpage' -%}
 
             <div class="collection-block__wrapper collection-block__wrapper--{{ collection.handle }}">

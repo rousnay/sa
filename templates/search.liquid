@@ -28,6 +28,9 @@
       </div>
         <div class="product-grid product-grid--search" id="SearchLoop">
             {% for product in search.results %}
+              {%- comment %}<locksmith:87a4>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:87a4>{% endcomment -%}
               {% include 'product-grid-item', quick_view: false %}
             {% endfor %}
         </div>

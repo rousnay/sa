@@ -28,6 +28,9 @@
     <div class="subcollections">
       <ul class="subcollections__list {{ list_width }}">
         {% for sublink in sub_collections %}
+          {%- comment %}<locksmith:2a6c>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: sublink, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:2a6c>{% endcomment -%}
           {% if sublink.type == 'collection_link' %}
             {% assign sub_collection = collections[sublink.object.handle] %}
             <li class="subcollection__item {{ item_width }}">
